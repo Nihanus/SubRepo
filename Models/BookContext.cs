@@ -9,4 +9,5 @@ public class BookContext : DbContext{
 
     public DbSet<Book> Books {get; set;} = null!;
     public DbSet<BookReservation> Reservations {get; set;} = null!;
+    public DbSet<BookType> Types {get; set;}
 }
