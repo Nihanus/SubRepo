@@ -4,6 +4,7 @@ using App.Helpers;
 using App.Models;
 
 public interface IBookReserve{
+    List<BookReservation> GetBookReservations();
     void ReserveBook(BookReservation model);
 }
 
@@ -56,5 +57,9 @@ public class BookReserve : IBookReserve{
         double price = GetPriceOfStay(model);
         model.PriceOfStay = price;
         _context.Reservations.Add(model);
+    }
+
+    public List<BookReservation> GetBookReservations(){
+        return _context.Reservations.ToList();
     }
 }
