@@ -5,6 +5,7 @@ using App.Models;
 
 public interface IBookReserve{
     List<BookReservation> GetBookReservations();
+    List<BookType> GetBookTypes();
     void ReserveBook(BookReservation model);
 }
 
@@ -61,5 +62,8 @@ public class BookReserve : IBookReserve{
 
     public List<BookReservation> GetBookReservations(){
         return _context.Reservations.ToList();
+    }
+    public List<BookType> GetBookTypes(){
+        return _context.Types.ToList();
     }
 }
