@@ -13,15 +13,28 @@ public class BookReserve : IBookReserve{
     private BookContext _context;
     public BookReserve(BookContext context){
         _context = context;
+        List<BookType> types = new List<BookType>{
+            new BookType{
+                Name = "Book"
+            },
+            new BookType{
+                Name = "Audiobook"
+            }
+        };
+        _context.Types.AddRange(types);
+        _context.SaveChanges();
     }
 
     private double GetPriceOfStay(BookReservation model){
         double price = 0;
-        var type = model.Type;
+        var type = model.TypeofBook;
 
         string tempDate = DateTime.Now.ToString("yyyy/MM/dd");
         DateTime currentDate = DateTime.Parse(tempDate);
 
+        if(type == null){
+            throw new AppException("Book type must be selected");
+        }
         if(model.StartDay.CompareTo(model.EndDay) > 0){
             throw new AppException("Day of book return can't be before day of pickup");
         }
@@ -33,10 +46,10 @@ public class BookReserve : IBookReserve{
         }
 
         TimeSpan duration = model.EndDay.Subtract(model.StartDay);
-        if(type.Name == "Book"){
+        if(type.Name == "book"){
             price = 2*duration.Days;
         }
-        else if(type.Name == "Audiobook"){
+        else if(type.Name == "audiobook"){
             price = 3*duration.Days;
         }
 
