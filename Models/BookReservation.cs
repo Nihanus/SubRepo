@@ -6,4 +6,5 @@ public class BookReservation{
     public DateTime StartDay {get; set;}
     public DateTime EndDay {get; set;}
     public bool QuickPickUp {get; set;}
+    public decimal PriceOfStay {get; set;} = 0;
 }
