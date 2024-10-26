@@ -58,6 +58,7 @@ public class BookReserve : IBookReserve{
         double price = GetPriceOfStay(model);
         model.PriceOfStay = price;
         _context.Reservations.Add(model);
+        _context.SaveChanges();
     }
 
     public List<BookReservation> GetBookReservations(){
