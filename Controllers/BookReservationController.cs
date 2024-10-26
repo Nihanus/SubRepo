@@ -21,4 +21,10 @@ public class BookReservationController : ControllerBase{
     public IActionResult GetReservations(){
         return Ok(_bookReserve.GetBookReservations());
     }
+
+    [HttpPost]
+    public IActionResult ReserveBook(BookReservation model){
+        _bookReserve.ReserveBook(model);
+        return Ok(new {message = "Book reservation succesful"});
+    }
 }

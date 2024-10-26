@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<BookContext>(opt => opt.UseInMemoryDatabase("Books"));
 builder.Services.AddScoped<IBookLook, BookLook>();
+builder.Services.AddScoped<IBookReserve, BookReserve>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
