@@ -21,7 +21,6 @@ export function Reserve(){
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
     const [pickUp, setPickUp] = useState(true);
-    const [audio, setAudio] = useState(false);
 
     const handleChange = (event) =>{
         setType(event.target.value);
@@ -32,7 +31,6 @@ export function Reserve(){
     };
 
     const handlePress = (event) =>{
-        console.log(audio);
         console.log(type);
         const requestOptions = {
             method: 'POST',
