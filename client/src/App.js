@@ -2,24 +2,17 @@ import React, {Fragment} from "react";
 import "./index.css"
 import {Route, BrowserRouter, Routes} from "react-router-dom";
 import { Home } from "./components/Home";
+import { NavBar } from "./components/NavBar";
 
 export default function App() {
   return (
     <BrowserRouter>
-    <main>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-        </nav>
+        <NavBar/>
         <Routes>
         <Route path="/" Component={Home}/>
         <Route path="/about" Component={About}/>
         <Route path="/contact" Component={Contact}/>
         </Routes>
-     </main>
      </BrowserRouter>
   );
 }
@@ -32,7 +25,7 @@ const Home = () => (
   </Fragment>
   );*/
 // About Page
-const About = () => (
+export const About = () => (
   <Fragment>
     <h1>About</h1>
     <FakeText />
