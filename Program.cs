@@ -3,10 +3,21 @@ using App.Models;
 using App.Services;
 using App.Helpers;
 
+const string policy = "CorsPolicy";
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: policy, builder =>
+    {
+        builder.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+}
+);
 builder.Services.AddControllers();
 builder.Services.AddDbContext<BookContext>(opt => opt.UseInMemoryDatabase("Books"));
 builder.Services.AddScoped<IBookLook, BookLook>();
@@ -20,11 +31,17 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app. UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
+
+app.UseCors(policy);
 
 app.UseAuthorization();
 

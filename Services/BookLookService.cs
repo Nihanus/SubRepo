@@ -19,7 +19,7 @@ public class BookLook : IBookLook{
             new Book{
                 BookName = "The Hobbit",
                 ReleaseYear = 1937,
-                ImgPath = "https://cdn11.bigcommerce.com/s-gibnfyxosi/images/stencil/1920w/products/154740/156431/51eq24cRtRL__98083.1615576774.jpg?c=1"
+                ImgPath = "https://images.thenile.io/r1000/9780007487288.jpg"
             }
         };
         _context.Books.AddRange(books);

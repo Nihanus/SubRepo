@@ -32,11 +32,13 @@ export class Home extends Component{
                         </TableRow>
                     </TableHead>
                     <TableBody>
+                        {console.log("Test")}
                         {books.map(book =>
                             <TableRow key={book.id}>
-                                <TableCell><img src={book.imgpath} alt="Image of book"/></TableCell>
-                                <TableCell>{book.name}</TableCell>
-                                <TableCell>{book.releaseyear}</TableCell>
+                                {console.log(book)}
+                                <TableCell><img src={book.imgPath} alt="Image of book" width="200px"/></TableCell>
+                                <TableCell>{book.bookName}</TableCell>
+                                <TableCell>{book.releaseYear}</TableCell>
                             </TableRow>
                         )}
                     </TableBody>
@@ -46,8 +48,7 @@ export class Home extends Component{
     }
 
     render(){
-        let contents = this.state.loading ? <p><em>Loading ...</em></p>
-        : Home.renderBookList(this.state.books);
+        let contents = this.state.loading ? <p><em>Loading ...</em></p> : Home.renderBookList(this.state.books);
         return(
             <div>
                 <h1 id="tableLabel">Book list</h1>
@@ -57,7 +58,7 @@ export class Home extends Component{
     }
 
     async populateBookData(){
-        const response = await fetch('book');
+        const response = await fetch('https://localhost:7085/book');
         const data = await response.json();
         this.setState({books: data, loading: false});
     }
