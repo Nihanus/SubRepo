@@ -4,6 +4,7 @@ using App.Models;
 
 public interface IBookLook{
     List<Book> GetBooks();
+    Book GetBook(int id);
 }
 
 public class BookLook : IBookLook{
@@ -28,5 +29,13 @@ public class BookLook : IBookLook{
 
     public List<Book> GetBooks(){
         return _context.Books.ToList();
+    }
+
+    public Book GetBook(int id){
+        var book = _context.Books.Find(id);
+        if(book == null){
+            throw new KeyNotFoundException("Book not found");
+        }
+        return book;
     }
 }

@@ -12,7 +12,12 @@ public class BookController : ControllerBase{
         _bookLook = bookLook;
     }
     [HttpGet]
-    public IActionResult GetBook(){
+    public IActionResult GetBooks(){
         return Ok(_bookLook.GetBooks());
+    }
+    [HttpGet("{id}")]
+    public IActionResult GetBook(int id){
+        var book = _bookLook.GetBook(id);
+        return Ok(book);
     }
 }
