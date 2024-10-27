@@ -6,11 +6,11 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { Tab } from "@mui/material";
+import { Path } from "./APIPath";
+import { patch } from "@mui/material";
 
 export class Home extends Component{
     static displayName = Home.name;
-
     constructor(props){
         super(props);
         this.state = {books: [], loading: true};
@@ -32,10 +32,8 @@ export class Home extends Component{
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {console.log("Test")}
                         {books.map(book =>
                             <TableRow key={book.id}>
-                                {console.log(book)}
                                 <TableCell><img src={book.imgPath} alt="Image of book" width="200px"/></TableCell>
                                 <TableCell>{book.bookName}</TableCell>
                                 <TableCell>{book.releaseYear}</TableCell>
@@ -58,7 +56,7 @@ export class Home extends Component{
     }
 
     async populateBookData(){
-        const response = await fetch('https://localhost:7085/book');
+        const response = await fetch(Path+'book');
         const data = await response.json();
         this.setState({books: data, loading: false});
     }
