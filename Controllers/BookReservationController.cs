@@ -13,10 +13,6 @@ public class BookReservationController : ControllerBase{
         _bookReserve = bookReserve;
     }
 
-    [HttpGet]
-    public IActionResult GetBookTypes(){
-        return Ok(_bookReserve.GetBookTypes());
-    }
     [HttpGet("reservations")]
     public IActionResult GetReservations(){
         return Ok(_bookReserve.GetBookReservations());

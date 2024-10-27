@@ -9,10 +9,11 @@ public class BookReservation{
     public DateTime EndDay {get; set;}
     public bool QuickPickUp {get; set;}
     public double PriceOfStay {get; set;} = 0;
-    public BookType? TypeofBook {get; set;}
+    public string? TypeofBook {get; set;}
 }
 
 public class BookType{
+    [Key]
     public int Id {get; set;}
     public string? Name {get; set;}
 }

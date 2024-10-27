@@ -11,7 +11,7 @@ public class BookLook : IBookLook{
     private BookContext _context;
     public BookLook(BookContext context){
         _context = context;
-        List<Book> books = new List<Book>{
+        /*List<Book> books = new List<Book>{
             new Book{
                 BookName = "Lord of the Rings",
                 ReleaseYear = 1957,
@@ -24,7 +24,7 @@ public class BookLook : IBookLook{
             }
         };
         _context.Books.AddRange(books);
-        _context.SaveChanges();
+        _context.SaveChanges();*/
     }
 
     public List<Book> GetBooks(){

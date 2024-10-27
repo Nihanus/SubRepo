@@ -7,7 +7,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Path } from "./APIPath";
-import { patch } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export class Home extends Component{
     static displayName = Home.name;
@@ -35,7 +35,7 @@ export class Home extends Component{
                         {books.map(book =>
                             <TableRow key={book.id}>
                                 <TableCell><img src={book.imgPath} alt="Image of book" width="200px"/></TableCell>
-                                <TableCell>{book.bookName}</TableCell>
+                                <TableCell><Link to={'/book/'+book.id}>{book.bookName}</Link></TableCell>
                                 <TableCell>{book.releaseYear}</TableCell>
                             </TableRow>
                         )}

@@ -4,8 +4,7 @@ using App.Helpers;
 using App.Models;
 
 public interface IBookReserve{
-    List<BookReservation> GetBookReservations();
-    List<BookType> GetBookTypes();
+    BookReservation[] GetBookReservations();
     void ReserveBook(BookReservation model);
 }
 
@@ -13,7 +12,7 @@ public class BookReserve : IBookReserve{
     private BookContext _context;
     public BookReserve(BookContext context){
         _context = context;
-        List<BookType> types = new List<BookType>{
+        /*List<BookType> types = new List<BookType>{
             new BookType{
                 Name = "Book"
             },
@@ -22,7 +21,7 @@ public class BookReserve : IBookReserve{
             }
         };
         _context.Types.AddRange(types);
-        _context.SaveChanges();
+        _context.SaveChanges();*/
     }
 
     private double GetPriceOfStay(BookReservation model){
@@ -41,15 +40,18 @@ public class BookReserve : IBookReserve{
         else if(model.StartDay.CompareTo(model.EndDay) == 0){
             throw new AppException("Day of return can't be the same day as day of pickup");
         }
+        else if(model.StartDay.CompareTo(currentDate) < 0){
+            throw new AppException("Can't reserve book before current day");
+        }
         else if(model.StartDay.CompareTo(currentDate) == 0 && !model.QuickPickUp){
             throw new AppException("Can't pick up the book today if you didn't choose \"Quick pick up\"");
         }
 
         TimeSpan duration = model.EndDay.Subtract(model.StartDay);
-        if(type.Name == "book"){
+        if(type == "book"){
             price = 2*duration.Days;
         }
-        else if(type.Name == "audiobook"){
+        else if(type == "audiobook"){
             price = 3*duration.Days;
         }
 
@@ -74,10 +76,7 @@ public class BookReserve : IBookReserve{
         _context.SaveChanges();
     }
 
-    public List<BookReservation> GetBookReservations(){
-        return _context.Reservations.ToList();
-    }
-    public List<BookType> GetBookTypes(){
-        return _context.Types.ToList();
+    public BookReservation[] GetBookReservations(){
+        return _context.Reservations.ToArray();
     }
 }
