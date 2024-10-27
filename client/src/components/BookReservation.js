@@ -9,11 +9,14 @@ import { DatePicker } from '@mui/x-date-pickers/';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
+import {Radio} from "@mui/material";
+import {RadioGroup} from "@mui/material";
 import { Link } from "react-router-dom";
 
 export function Reserve(){
     const id = useParams();
     const [book, setBook] = useState({});
+    const [type, setType] = useState("book");
     const [loading, setLoading] = useState(true);
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(new Date());
@@ -21,7 +24,7 @@ export function Reserve(){
     const [audio, setAudio] = useState(false);
 
     const handleChange = (event) =>{
-        setAudio(event.target.checked);
+        setType(event.target.value);
     };
 
     const handleCheck = (event) =>{
@@ -29,15 +32,8 @@ export function Reserve(){
     };
 
     const handlePress = (event) =>{
-        let typing = "audiobook";
-        if(audio === true){
-            typing = "audiobook";
-        }
-        else if(audio === false){
-            typing = "book";
-        }
         console.log(audio);
-        console.log(typing);
+        console.log(type);
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -46,7 +42,7 @@ export function Reserve(){
                 "startday": startDate,
                 "endday": endDate,
                 "quickpickup": pickUp,
-                "typeofbook": typing
+                "typeofbook": type
             })
         };
         console.log(requestOptions);
@@ -101,7 +97,10 @@ export function Reserve(){
             </DemoContainer>
         </LocalizationProvider>
         <FormGroup>
-            <FormControlLabel control={<Switch checked={audio} onChange={handleChange}/>} label="Audiobook"/>
+            <RadioGroup value={type} onChange={handleChange}>
+                <FormControlLabel value="book" control={<Radio/>} label="Book"/>
+                <FormControlLabel value="audiobook" control={<Radio/>} label="Audiobook"/>
+            </RadioGroup>
             <FormControlLabel control={<Checkbox checked={pickUp} onChange={handleCheck}/>} label="Quick pick up"/>
             {console.log(pickUp)}
         </FormGroup>
