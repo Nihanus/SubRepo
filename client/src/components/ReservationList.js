@@ -23,7 +23,7 @@ export class ReservationList extends Component {
     static renderReservations(reservations){
         return(
             <>
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} elevation={3}>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>

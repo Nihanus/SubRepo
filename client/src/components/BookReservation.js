@@ -81,8 +81,9 @@ export function Reserve(){
     }
     return(
         <>
-        <div><h1>Book reservation</h1></div>
-        <p>Book name: <b>{book.bookName}</b></p>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}><h1>Book reservation</h1></div>
+        <p style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Book name: <b>{book.bookName}</b></p>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
                 <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} label="Start day"/>
@@ -91,10 +92,10 @@ export function Reserve(){
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <DemoContainer components={['DatePicker']}>
                 <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} label="End day"/>
-                {console.log(JSON.stringify({ endday: endDate}))}
             </DemoContainer>
         </LocalizationProvider>
-        <FormGroup>
+        </div>
+        <FormGroup style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
             <RadioGroup value={type} onChange={handleChange}>
                 <FormControlLabel value="book" control={<Radio/>} label="Book"/>
                 <FormControlLabel value="audiobook" control={<Radio/>} label="Audiobook"/>
@@ -102,7 +103,9 @@ export function Reserve(){
             <FormControlLabel control={<Checkbox checked={pickUp} onChange={handleCheck}/>} label="Quick pick up"/>
             {console.log(pickUp)}
         </FormGroup>
-        <Button variant="contained" onClick={handlePress} component={Link} to="/">Submit</Button>
+        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <Button variant="contained" onClick={handlePress} component={Link} to="/">Submit</Button>
+        </div>
         </>
     );
 }

@@ -22,7 +22,7 @@ export class Home extends Component{
 
     static renderBookList(books){
         return(
-            <TableContainer component={Paper}>
+            <TableContainer component={Paper} elevation={3}>
                 <Table aria-label="simple table">
                     <TableHead>
                         <TableRow>
