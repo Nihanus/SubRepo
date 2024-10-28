@@ -2,6 +2,7 @@ namespace App.Services;
 
 using App.Helpers;
 using App.Models;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 
 public interface IBookReserve{
     BookReservation[] GetBookReservations();
@@ -23,8 +24,11 @@ public class BookReserve : IBookReserve{
         _context.Types.AddRange(types);
         _context.SaveChanges();*/
     }
+    public BookReserve(){
+        _context = null;
+    }
 
-    private double GetPriceOfStay(BookReservation model){
+    public double GetPriceOfBook(BookReservation model){
         double price = 0;
         var type = model.TypeofBook;
 
@@ -70,8 +74,8 @@ public class BookReserve : IBookReserve{
         return price;
     }
     public void ReserveBook(BookReservation model){
-        double price = GetPriceOfStay(model);
-        model.PriceOfStay = price;
+        double price = GetPriceOfBook(model);
+        model.PriceOfBook = price;
         _context.Reservations.Add(model);
         _context.SaveChanges();
     }

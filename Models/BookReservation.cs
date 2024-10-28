@@ -8,7 +8,7 @@ public class BookReservation{
     public DateTime StartDay {get; set;}
     public DateTime EndDay {get; set;}
     public bool QuickPickUp {get; set;}
-    public double PriceOfStay {get; set;} = 0;
+    public double PriceOfBook {get; set;} = 0;
     public string? TypeofBook {get; set;}
 }
 
