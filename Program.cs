@@ -1,3 +1,6 @@
+/*
+Made by: Ignas Budzinskas
+*/
 using Microsoft.EntityFrameworkCore;
 using App.Models;
 using App.Services;
