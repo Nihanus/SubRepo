@@ -20,6 +20,11 @@ export class ReservationList extends Component {
         this.populateReservationData();
     }
 
+    static formateDate(string) {
+        let options = { year: 'numeric', month: 'numeric', day: 'numeric'}
+        return new Date(string).toLocaleDateString([], options);
+    }
+
     static renderReservations(reservations){
         return(
             <>
@@ -39,10 +44,10 @@ export class ReservationList extends Component {
                         {reservations.map(reservation =>
                             <TableRow key={reservation.id}>
                                 <TableCell>{reservation.bookName}</TableCell>
-                                <TableCell>{reservation.startDay}</TableCell>
-                                <TableCell>{reservation.endDay}</TableCell>
+                                <TableCell>{this.formateDate(reservation.startDay)}</TableCell>
+                                <TableCell>{this.formateDate(reservation.endDay)}</TableCell>
                                 <TableCell>{reservation.quickPickUp+""}</TableCell>
-                                <TableCell>{reservation.priceOfStay}</TableCell>
+                                <TableCell>{reservation.priceOfBook}</TableCell>
                                 <TableCell>{reservation.typeofBook}</TableCell>
                             </TableRow>
                         )}
@@ -58,7 +63,7 @@ export class ReservationList extends Component {
         return(
             <>
             <div>
-                <h1 id="tableLabel">Book reservations</h1>
+                <h1 id="tableLabel" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>Book reservations</h1>
                 {contents}
             </div>
             </>
