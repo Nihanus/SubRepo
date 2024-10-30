@@ -34,8 +34,8 @@ export class Home extends Component{
                     <TableBody>
                         {books.map(book =>
                             <TableRow key={book.id}>
-                                <TableCell><img src={book.imgPath} alt="Image of book" width="200px"/></TableCell>
-                                <TableCell><Link to={'/book/'+book.id}>{book.bookName}</Link></TableCell>
+                                <TableCell component={Link} to={'/book/'+book.id}><img src={book.imgPath} alt="Image of book" width="200px"/></TableCell>
+                                <TableCell component={Link} to={'/book/'+book.id}>{book.bookName}</TableCell>
                                 <TableCell>{book.releaseYear}</TableCell>
                             </TableRow>
                         )}
